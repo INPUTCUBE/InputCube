@@ -1,0 +1,99 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Remove color-scheme:dark — it forces system dark-mode
+   overrides on white-background pages (input bg, scrollbar, etc.) */
+:root {
+  color-scheme: light;
+}
+
+body {
+  @apply bg-white text-black font-sans antialiased overflow-x-hidden;
+  width: 100%;
+  position: relative;
+}
+
+#root {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.text-gradient {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-white via-white/80 to-white/40;
+}
+
+.dot-pattern {
+  background-image: radial-gradient(rgba(0, 0, 0, 0.06) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+/* ── Scrollbar hide utility used in Blog filter row ─────── */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ── orb animations ─────────────────────────────────────── */
+@keyframes orb-spin {
+  from { transform: rotate(0deg);   }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes orb-spin-rev {
+  from { transform: rotate(0deg);   }
+  to   { transform: rotate(-360deg); }
+}
+
+@keyframes orb-float {
+  0%, 100% { transform: translateY(0px);   }
+  50%       { transform: translateY(-18px); }
+}
+
+@keyframes shimmer-x {
+  0%   { transform: translateX(-120%); }
+  100% { transform: translateX(220%);  }
+}
+
+@keyframes pulse-ring {
+  0%, 100% { opacity: 0.3; transform: scale(1);    }
+  50%       { opacity: 0.7; transform: scale(1.05); }
+}
+
+@keyframes color-breathe {
+  0%, 100% { opacity: 0.55; }
+  50%       { opacity: 0.85; }
+}
+
+.sphere-glow {
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    rgba(251, 146, 60, 0.9),
+    rgba(249, 115, 22, 0.9),
+    rgba(251, 191, 36, 0.7),
+    rgba(239, 68, 68, 0.6),
+    rgba(59, 130, 246, 0.5),
+    rgba(251, 146, 60, 0.9)
+  );
+  filter: blur(48px);
+  animation: orb-spin 10s linear infinite;
+}
+
+.sphere-particles {
+  background-image: url("data:image/svg+xml,%3Csvg width='400' height='400' viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.4'/%3E%3C/svg%3E");
+  mask-image: radial-gradient(circle, black 50%, transparent 72%);
+}
+
+.hatched-pattern {
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 4px,
+    rgba(0, 0, 0, 0.1) 4px,
+    rgba(0, 0, 0, 0.1) 5px
+  );
+}
